@@ -1838,6 +1838,7 @@ html.hc .narr,html.hc .vdlg{background:#000!important;border-color:#ffe600!impor
   function buildGenreCards() {
     const gc = $('genreCards'), sel = $('genreSel'), keep = sel.value; gc.textContent = ''; sel.textContent = '';
     Object.entries(GEN).forEach(([k, g]) => {
+      if (k === 'classical' || k === 'currents' || k === 'tango') { sel.add(new Option(gT(k, 'name') + ' (' + gT(k, 'data') + ')', k)); return; }
       const d = document.createElement('article'), b = document.createElement('button');
       d.className = 'gcard g-' + k; d.innerHTML = '<div class="gi" aria-hidden="true">' + IC(GI[k]) + '</div><h4>' + gT(k, 'short') + '</h4><p><b>' + tx('js.data_label') + '</b> ' + gT(k, 'data') + '</p><p>' + gT(k, 'rule') + '</p>';
       b.type = 'button'; b.className = 'btn secondary gbtn'; b.dataset.k = k; b.innerHTML = IC('play') + ' ' + tx('js.hear_it'); b.addEventListener('click', () => demo(k));
